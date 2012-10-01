@@ -1,0 +1,34 @@
+#!/bin/bash
+clear
+for f in *Test.py
+do
+    python $f 2>> RESULTS
+    echo $f >> RESULTS
+done
+
+grep FAIL RESULTS  > FAILS
+grep Traceback RESULTS > ERRORS
+grep "^OK" RESULTS > SUCCESS
+
+FAIL_COLOR=4
+SUCCESS_COLOR=2
+
+if [[ -s FAILS ]]; then
+  tput setf $FAIL_COLOR
+  banner FAILED
+elif [[ -s ERRORS ]]; then
+  tput setf $FAIL_COLOR
+  banner FATAL
+elif [[ -s SUCCESS ]]; then
+  tput setf $SUCCESS_COLOR
+  banner SUCCESS
+else
+  tput setf $FAIL_COLOR
+  banner FATAL
+fi
+
+cat RESULTS
+
+rm RESULTS FAILS ERRORS SUCCESS
+
+tput sgr0
