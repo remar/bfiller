@@ -17,5 +17,18 @@ class HoursTest(unittest.TestCase):
     def test_can_be_compared_with_other_hours_object(self):
         self.assertEquals(Hours(10), Hours(10))
 
+    def test_can_be_subtracted(self):
+        self.assertEquals(Hours(2), Hours(5) - Hours(3))
+
+    def test_can_roll_over_when_subtracted(self):
+        self.assertEquals(Hours(0, 50), Hours(1) - Hours(0, 10))
+
+    def test_can_be_compared_with_gt(self):
+        self.assertTrue(Hours(5) > Hours(3))
+
+    def test_can_be_printed(self):
+        self.assertEquals(str(Hours(4, 30)), "4:30")
+        self.assertEquals(str(Hours(3)), "3:00")
+
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@ from Time import Time
 
 class TimeRange(object):
     def __init__(self, start = Time(0), end = Time(0)):
+        assert(type(start) == Time and type(end) == Time)
         self.start = start
         self.end = end
 

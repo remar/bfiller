@@ -29,3 +29,8 @@ class Time(object):
 
     def __str__(self):
         return "%d:%02d" % (self.hour, self.minute)
+
+    def __gt__(self, other):
+        return (self.hour > other.hour
+                or (self.hour == other.hour
+                    and self.minute > other.minute))

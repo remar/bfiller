@@ -1,44 +1,36 @@
 from Hours import Hours
 from TimeRange import TimeRange
 from Time import Time
+from Week import Week
 
-def generate(hours_per_week, taken_times):
-    times = []
+DEFAULT_LATEST_TIME = Time(20)
+DEFAULT_LONGEST_DAY = Hours(10)
 
-    hours = hours_per_week.get_hours()
-
-    while hours >= 10:
-        times.append(Hours(10))
-        hours -= 10
-
-    if hours > 0 or hours_per_week.get_minutes() > 0:
-        times.append(Hours(hours, hours_per_week.get_minutes()))
-
-    return times
-
-def generate_day(hours, taken = None):
+def generate_day(hours, taken = None, latest_time = None):
     if taken != None:
         start = taken.get_end()
     else:
         start = Time(7, 0)
-    return TimeRange(start, start.add_hours(hours))
+    new_end = start.add_hours(hours)
 
-def generate_week(hours):
-    times = []
+    if latest_time != None and new_end > latest_time:
+        new_end = latest_time
+    return TimeRange(start, new_end)
 
-    h = hours.get_hours()
+def generate_week(hours, taken_week = None, latest_time = None):
+    latest_time = latest_time or DEFAULT_LATEST_TIME
 
-    while h >= 10:
-        times.append(generate_day(Hours(10)))
-        h -= 10
+    week = Week()
+    day = 0
+    while hours > Hours(0):
+        taken_hours = taken_week.get_day(day) if taken_week != None else None
+        if hours > DEFAULT_LONGEST_DAY:
+            generated_day = generate_day(DEFAULT_LONGEST_DAY, taken_hours,
+                                         latest_time)
+        else:
+            generated_day = generate_day(hours, taken_hours, latest_time)
+        week.set_day(day, generated_day)
+        day += 1
+        hours -= generated_day.get_length()
 
-    if h > 0 or hours.get_minutes() > 0:
-        times.append(generate_day(Hours(h, hours.get_minutes())))
-
-    pad_with_none(times)
-
-    return times
-
-def pad_with_none(times):
-    while len(times) < 7:
-        times.append(None)
+    return week

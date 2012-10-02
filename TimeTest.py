@@ -30,5 +30,8 @@ class TimeTest(unittest.TestCase):
     def test_can_be_printed(self):
         self.assertEquals(str(Time(7)), "7:00")
 
+    def test_can_be_compared_with_other_time(self):
+        self.assertTrue(Time(20) > Time(19))
+
 if __name__ == "__main__":
     unittest.main()
