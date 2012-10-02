@@ -24,5 +24,12 @@ class TimeRangeTest(unittest.TestCase):
         time_range = TimeRange(Time(9), Time(10))
         self.assertEquals(time_range.get_end(), Time(10))
 
+    def test_can_be_printed(self):
+        time_range = TimeRange(Time(9), Time(10, 30))
+        self.assertEquals(str(time_range), "9:00-10:30")
+
+    def test_can_be_compared_with_timerange(self):
+        self.assertEquals(TimeRange(Time(7), Time(10)), TimeRange(Time(7), Time(10)))
+
 if __name__ == "__main__":
     unittest.main()

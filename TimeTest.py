@@ -27,5 +27,8 @@ class TimeTest(unittest.TestCase):
     def test_can_be_moved_by_hours(self):
         self.assertEquals(Time(7).add_hours(Hours(10)), Time(17))
 
+    def test_can_be_printed(self):
+        self.assertEquals(str(Time(7)), "7:00")
+
 if __name__ == "__main__":
     unittest.main()
