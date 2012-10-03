@@ -8,10 +8,12 @@ class ReportGenerator(object):
 
         self._make_fk_page(month)
 
+        self._make_kommun_pages(month)
+
         self.canvas.save()
 
     def _make_fk_page(self, month):
-        self.canvas.drawImage("img/fktimmar.png", 0, 0, 595.27, 841.89)
+        self._draw_background("img/fktimmar.png")
         self._draw_string(10.70, 3.12, "  ".join(str(month.year)))
         self._draw_string(13.16, 3.12, "  ".join(str(month.month)))
         self._draw_string(1.60, 8.58, "Edvin Waldh")
@@ -27,13 +29,32 @@ class ReportGenerator(object):
             if day != None:
                 x, y = self._get_offset_for_position(i)
                 self._draw_string(x, y, str(i))
-                self._draw_string(x + 1.0, y, str(day.get_start()))
+                self._draw_string(x + 0.8, y, str(day.get_start()))
                 self._draw_string(x + 2.35, y, str(day.get_end()))
                 self._draw_string(x + 4, y, str(self._format_hours(day.get_length())))
 
         self._draw_string(14.6, 24.7, self._format_hours(month.get_total_time()))
 
         self.canvas.showPage()
+
+    def _make_kommun_pages(self, month):
+#        self._draw_background("img/kommuntimmar.png")
+#        self.canvas.showPage()
+#        self._get_week_numbers_pairwise
+        week_numbers = month.get_week_numbers()
+        pairwise = zip(week_numbers[::2], week_numbers[1::2])
+        if len(week_numbers) % 2 == 1:
+            pairwise.append((week_numbers[-1], ))
+        print pairwise
+        print "pages:", len(pairwise)
+
+        for week_number in month.get_week_numbers():
+            week = month.get_week(week_number)
+#            print "Week", week_number
+#            print week
+
+    def _draw_background(self, image):
+        self.canvas.drawImage(image, 0, 0, 595.27, 841.89)
 
     def _draw_string(self, x, y, s):
         self.canvas.drawString(x * cm, (29.7 - y) * cm, s)

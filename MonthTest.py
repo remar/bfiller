@@ -71,5 +71,21 @@ class MonthTest(unittest.TestCase):
         m.add_week(42, w)
         self.assertEquals(m.get_total_time(), Hours(20, 20))
 
+    def test_can_return_week(self):
+        m = Month(2012, 10)
+        w = Week()
+        w.set_day(0, TimeRange(Time(7), Time(17)))
+        m.add_week(40, w)
+        self.assertEquals(m.get_week(40).get_day(0), TimeRange(Time(7), Time(17)))
+
+    def test_can_return_half_week(self):
+        m = Month(2012, 11)
+        w = Week()
+        w.set_day(2, TimeRange(Time(7), Time(17)))
+        w.set_day(3, TimeRange(Time(8), Time(18)))
+        m.add_week(44, w)
+
+        self.assertEquals(m.get_week(44).get_day(2), None)
+
 if __name__ == "__main__":
     unittest.main()

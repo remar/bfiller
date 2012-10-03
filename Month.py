@@ -3,12 +3,14 @@ import calendar
 from TimeRange import TimeRange
 from Time import Time
 from Hours import Hours
+from Week import Week
 
 class Month(object):
     def __init__(self, year, month):
         self.year = year
         self.month = month
         self.days = {}
+        self.weeks = {}
 
     def add_week(self, week_number, week):
         if self.month == 12 and week_number == 1:
@@ -25,9 +27,17 @@ class Month(object):
         if self._last_week(week_number):
             last_weekday = self._weekday_for_last_day()
 
+        stored_week = Week()
+
         for i in xrange(first_weekday - 1, last_weekday):
             self.days[day] = week.get_day(i)
+            stored_week.set_day(i, week.get_day(i))
             day += 1
+
+        self.weeks[week_number] = stored_week
+
+    def get_week(self, week_number):
+        return self.weeks[week_number]
 
     def get_day(self, day):
         return self.days[day] if day in self.days else None
