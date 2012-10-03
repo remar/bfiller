@@ -1,4 +1,5 @@
 from TimeRange import TimeRange
+from Hours import Hours
 
 class Week(object):
     def __init__(self):
@@ -9,6 +10,15 @@ class Week(object):
 
     def set_day(self, day, time_range):
         self.days[day] = time_range
+
+    def get_total_time(self):
+        total = Hours(0)
+
+        for day in self.days:
+            if day != None:
+                total += day.get_length()
+
+        return total
 
     def __str__(self):
         titles = ["M", "T", "O", "T", "F", "L", "S"]

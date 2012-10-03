@@ -2,6 +2,7 @@ import unittest
 from Week import Week
 from Time import Time
 from TimeRange import TimeRange
+from Hours import Hours
 
 class WeekTest(unittest.TestCase):
     def test_can_be_empty(self):
@@ -40,6 +41,13 @@ S: 7:00-17:00""")
         self.assertEquals(w3.get_day(0), TimeRange(Time(8, 30), Time(17)))
         self.assertEquals(w3.get_day(1), TimeRange(Time(7), Time(12)))
         self.assertEquals(w3.get_day(2), TimeRange(Time(8), Time(13)))
+
+    def test_can_report_total_hours_and_minutes(self):
+        w = Week()
+        w.set_day(0, TimeRange(Time(7), Time(17)))
+        w.set_day(1, TimeRange(Time(10), Time(10, 30)))
+
+        self.assertEquals(w.get_total_time(), Hours(10, 30))
 
 if __name__ == "__main__":
     unittest.main()

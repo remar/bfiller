@@ -2,6 +2,7 @@ from datetime import date, timedelta
 import calendar
 from TimeRange import TimeRange
 from Time import Time
+from Hours import Hours
 
 class Month(object):
     def __init__(self, year, month):
@@ -46,6 +47,16 @@ class Month(object):
 
         return range(self.get_first_week_number(),
                      self.get_last_week_number() + 1)
+
+    def get_total_time(self):
+        total = Hours(0)
+        
+        for i in xrange(1, self._get_last_day_number() + 1):
+            day = self.get_day(i)
+            if day != None:
+                total += day.get_length()
+
+        return total
 
     def _get_last_week_number_for_year(self):
         return 52

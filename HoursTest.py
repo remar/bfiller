@@ -30,5 +30,8 @@ class HoursTest(unittest.TestCase):
         self.assertEquals(str(Hours(4, 30)), "4:30")
         self.assertEquals(str(Hours(3)), "3:00")
 
+    def test_can_be_added(self):
+        self.assertEquals(Hours(2) + Hours(3, 30), Hours(5, 30))
+
 if __name__ == "__main__":
     unittest.main()

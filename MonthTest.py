@@ -3,6 +3,7 @@ from Month import Month
 from Week import Week
 from TimeRange import TimeRange
 from Time import Time
+from Hours import Hours
 
 class MonthTest(unittest.TestCase):
     def test_can_give_week_numbers_for_month(self):
@@ -61,7 +62,14 @@ class MonthTest(unittest.TestCase):
         w.set_day(6, TimeRange(Time(7), Time(10)))
         m.add_week(52, w)
         self.assertEquals(m.get_day(1), TimeRange(Time(7), Time(10)))
-        print m
+
+    def test_can_give_total_time_for_month(self):
+        m = Month(2012, 10)
+        w = Week()
+        w.set_day(4, TimeRange(Time(7), Time(17, 10)))
+        m.add_week(40, w)
+        m.add_week(42, w)
+        self.assertEquals(m.get_total_time(), Hours(20, 20))
 
 if __name__ == "__main__":
     unittest.main()
