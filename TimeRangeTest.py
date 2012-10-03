@@ -31,5 +31,20 @@ class TimeRangeTest(unittest.TestCase):
     def test_can_be_compared_with_timerange(self):
         self.assertEquals(TimeRange(Time(7), Time(10)), TimeRange(Time(7), Time(10)))
 
+    def test_can_be_concatenated(self):
+        t1 = TimeRange(Time(8, 30), Time(13, 30))
+        t2 = TimeRange(Time(13, 30), Time(17))
+        t3 = t1 + t2
+        self.assertEquals(t3, TimeRange(Time(8, 30), Time(17)))
+
+    def test_addition_handles_associativity(self):
+        t1 = TimeRange(Time(8, 30), Time(13, 30))
+        t2 = TimeRange(Time(13, 30), Time(17))
+        t3 = t2 + t1
+        self.assertEquals(t3, TimeRange(Time(8, 30), Time(17)))
+
+    def test_returns_false_when_compared_to_none(self):
+        self.assertFalse(TimeRange(Time(7), Time(17)) == None)
+
 if __name__ == "__main__":
     unittest.main()

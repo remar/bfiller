@@ -6,13 +6,8 @@ from TimeRange import TimeRange
 from Week import Week
 
 class TimeGeneratorTest(unittest.TestCase):
-    def setUp(self):
-        pass
-
     def test_can_generate_day_schedule_given_no_taken_hours(self):
-        day = generate_day(Hours(10))
-        self.assertEquals(day.get_start(), Time(7, 0))
-        self.assertEquals(day.get_end(), Time(17, 0))
+        self.assertEquals(generate_day(Hours(10)), TimeRange(Time(7), Time(17)))
 
     def test_places_range_after_given_range(self):
         day = generate_day(Hours(10), TimeRange(Time(7), Time(8)))
@@ -45,8 +40,9 @@ class TimeGeneratorTest(unittest.TestCase):
                  TimeRange(Time(6, 30), Time(13, 30))]
         for i in xrange(len(taken)):
             taken_week.set_day(i, taken[i])
+
         week = generate_week(Hours(30, 20), taken_week)
-        print week
+
         ranges = [TimeRange(Time(13, 30), Time(20)), # 23:50 left
                   TimeRange(Time(13, 30), Time(20)), # 17:20 left
                   TimeRange(Time(17), Time(20)), # 14:20 left

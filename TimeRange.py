@@ -20,4 +20,11 @@ class TimeRange(object):
         return str(self.start) + "-" + str(self.end)
 
     def __eq__(self, other):
+        if other == None:
+            return False
         return self.start == other.start and self.end == other.end
+
+    def __add__(self, other):
+        start = other.start if self.start > other.start else self.start
+        end = self.end if self.end > other.end else other.end
+        return TimeRange(start, end)
