@@ -7,13 +7,14 @@ else
     tests=*Test.py
 fi
 
-echo $tests
+tests_run=0
 
 clear
 for f in $tests
 do
     python $f 2>> RESULTS
     echo $f >> RESULTS
+    ((tests_run += 1))
 done
 
 grep FAIL RESULTS  > FAILS
@@ -23,13 +24,15 @@ grep "^OK" RESULTS > SUCCESS
 FAIL_COLOR=4
 SUCCESS_COLOR=2
 
+ok_tests=`wc -l SUCCESS | cut -d " " -f 1`
+
 if [[ -s FAILS ]]; then
   tput setf $FAIL_COLOR
   banner FAILED
 elif [[ -s ERRORS ]]; then
   tput setf $FAIL_COLOR
   banner FATAL
-elif [[ -s SUCCESS ]]; then
+elif [ "$tests_run" -eq "$ok_tests" ]; then
   tput setf $SUCCESS_COLOR
   banner SUCCESS
 else
@@ -39,6 +42,6 @@ fi
 
 cat RESULTS
 
-rm RESULTS FAILS ERRORS SUCCESS
-
 tput sgr0
+
+rm RESULTS FAILS ERRORS SUCCESS
