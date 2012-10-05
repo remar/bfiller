@@ -7,7 +7,7 @@ from Week import Week
 from TimeRange import TimeRange
 from Time import Time
 
-m = Month(2012, 10)
+m = Month(2012, 11)
 
 h = Hours(48, 20)
 
@@ -29,8 +29,7 @@ taken.set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
 for i in m.get_week_numbers():
     year.add_blocked(i, blocked)
     year.add_taken(i, taken)
-#    m.add_week(i, generate_week(h))
 
 report_gen = ReportGenerator()
 
-report_gen.generate(year.generate_montly_report(10, h))
+report_gen.generate(year.generate_montly_report(11, h))

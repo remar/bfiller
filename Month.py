@@ -4,6 +4,7 @@ from TimeRange import TimeRange
 from Time import Time
 from Hours import Hours
 from Week import Week
+from AnnotatedWeek import AnnotatedWeek
 
 class Month(object):
     def __init__(self, year, month):
@@ -27,7 +28,7 @@ class Month(object):
         if self._last_week(week_number):
             last_weekday = self._weekday_for_last_day()
 
-        stored_week = Week()
+        stored_week = self._create_annotated_week(day, first_weekday, last_weekday)
 
         for i in xrange(first_weekday - 1, last_weekday):
             self.days[day] = week.get_day(i)
@@ -136,3 +137,10 @@ class Month(object):
             if day != None:
                 lines.append(str(i) + ": " + str(day))
         return "\n".join(lines)
+
+    def _create_annotated_week(self, day, first_weekday, last_weekday):
+        aw = AnnotatedWeek()
+        aw.set_earliest_day_in_month(day)
+        aw.set_first_valid_day(first_weekday - 1)
+        aw.set_last_valid_day(last_weekday - 1)
+        return aw

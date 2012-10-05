@@ -4,6 +4,7 @@ from Week import Week
 from TimeRange import TimeRange
 from Time import Time
 from Hours import Hours
+from AnnotatedWeek import AnnotatedWeek
 
 class MonthTest(unittest.TestCase):
     def test_can_give_week_numbers_for_month(self):
@@ -86,6 +87,35 @@ class MonthTest(unittest.TestCase):
         m.add_week(44, w)
 
         self.assertEquals(m.get_week(44).get_day(2), None)
+
+    def test_returns_annotated_weeks(self):
+        m = Month(2012, 10)
+        w = Week()
+        w.set_day(0, TimeRange(Time(7), Time(17)))
+        m.add_week(40, w)
+        self.assertEquals(type(m.get_week(40)), AnnotatedWeek)
+
+    def test_returns_correctly_annotated_week_for_start_of_month(self):
+        m = Month(2012, 11)
+        w = Week()
+        for i in xrange(7):
+            w.set_day(i, TimeRange(Time(7), Time(17)))
+        m.add_week(44, w)
+        aw = m.get_week(44)
+        self.assertEquals(aw.get_earliest_day_in_month(), 1)
+        self.assertEquals(aw.get_first_valid_day(), 3)
+        self.assertEquals(aw.get_last_valid_day(), 6)
+
+    def test_returns_correctly_annotated_week_for_end_of_month(self):
+        m = Month(2012, 11)
+        w = Week()
+        for i in xrange(7):
+            w.set_day(i, TimeRange(Time(7), Time(17)))
+        m.add_week(48, w)
+        aw = m.get_week(48)
+        self.assertEquals(aw.get_earliest_day_in_month(), 26)
+        self.assertEquals(aw.get_first_valid_day(), 0)
+        self.assertEquals(aw.get_last_valid_day(), 4)
 
 if __name__ == "__main__":
     unittest.main()
