@@ -1,8 +1,8 @@
 * bfiller
 ** To do
+*** TODO Handle weeks with more than 48 hours (need secondary employee)
 *** TODO Handle January and December properly when making report
     Need to look at previous/next year to do this
-*** TODO Handle weeks with more than 48 hours (need secondary employee)
 *** TODO Save and load year (as JSON prolly)
 *** TODO Make GUI for entering times
 *** TODO Add FK totals sheet to report

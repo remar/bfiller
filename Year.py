@@ -21,6 +21,10 @@ class Year(object):
         disallowed = self._get_disallowed_week(week_number)
         hours -= self._get_taken_time(week_number)
 
+        if hours > Hours(48):
+            print "Too many hours for week", week_number, "! Please fill in", hours - Hours(48), "manually!"
+            hours = Hours(48)
+
         return generate_week(hours, disallowed)
 
     def add_blocked(self, week_number, blocked):
