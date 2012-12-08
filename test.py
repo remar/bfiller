@@ -34,6 +34,8 @@ year = Year(2012)
 blocked = {}
 taken = {}
 
+# October
+
 blocked[40] = Week()
 blocked[40].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
 blocked[40].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
@@ -83,6 +85,48 @@ taken[44].set_day(0, TimeRange(Time(13, 30), Time(17)))
 taken[44].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
 taken[44].set_day(2, TimeRange(Time(7), Time(17)))
 
+# November
+
+blocked[45] = Week()
+blocked[45].set_day(0, TimeRange(Time(8, 30), Time(11, 0)))
+blocked[45].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[45].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[45] = Week()
+taken[45].set_day(0, TimeRange(Time(11, 0), Time(17)))
+taken[45].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[45].set_day(2, TimeRange(Time(7), Time(17)))
+taken[45].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+blocked[46] = Week()
+blocked[46].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[46].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[46].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[46] = Week()
+taken[46].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[46].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[46].set_day(2, TimeRange(Time(7), Time(17)))
+taken[46].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+blocked[47] = Week()
+blocked[47].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[47].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[47].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[47] = Week()
+taken[47].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[47].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[47].set_day(2, TimeRange(Time(7), Time(17)))
+taken[47].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+blocked[48] = Week()
+blocked[48].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[48].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[48].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[48] = Week()
+taken[48].set_day(0, TimeRange(Time(13, 30), Time(17))) # Linda
 
 for i in blocked.keys():
      year.add_blocked(i, blocked[i])
@@ -92,4 +136,4 @@ for i in taken.keys():
 
 report_gen = ReportGenerator()
 
-report_gen.generate(year.generate_montly_report(10, h1))
+report_gen.generate(year.generate_montly_report(11, h1))
