@@ -58,9 +58,9 @@ class YearTest(unittest.TestCase):
         taken.set_day(0, TimeRange(Time(13, 30), Time(17)))
         y.add_taken(40, taken)
 
-        w = y.get_schedule_for_week(40, Hours(57, 50))
+        w = y.get_schedule_for_week(40, Hours(47, 50))
 
-        self.assertEquals(w.get_total_time(), Hours(54, 20))
+        self.assertEquals(w.get_total_time(), Hours(44, 20))
 
     def test_respects_both_blocked_and_taken_weeks(self):
         y = Year(2012)
