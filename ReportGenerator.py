@@ -11,7 +11,9 @@ class ReportGenerator(object):
         self._employee_number = "198104215945"
         self._employee_tel = "0705 - 16 90 69"
 
-        self.canvas = canvas.Canvas(str(month.year)+str(month.month)+".pdf")
+        padding = "0" if month.month < 10 else ""
+
+        self.canvas = canvas.Canvas(str(month.year)+padding+str(month.month)+".pdf")
 
         self._make_fk_page(month)
 

@@ -116,6 +116,7 @@ class Month(object):
         mondays = []
         week = 0
         week_numbers = self.get_week_numbers()
+
         if self._get_monday_number_for_week(self.get_first_week_number()) == 1:
             mondays.append(1)
         else:

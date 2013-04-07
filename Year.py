@@ -10,11 +10,17 @@ class Year(object):
     def __init__(self, year):
         self.year = year
         self.weeks = {}
+        self.next_year = None
 
     def generate_montly_report(self, month_number, hours):
         m = Month(self.year, month_number)
         for w in m.get_week_numbers():
-            m.add_week(w, self.get_schedule_for_week(w, hours))
+            if month_number == 12 and w == 1:
+                schedule = self.next_year.get_schedule_for_week(w, hours)
+            else:
+                schedule = self.get_schedule_for_week(w, hours)
+            m.add_week(w, schedule)
+
         return m
 
     def get_schedule_for_week(self, week_number, hours):
@@ -43,6 +49,12 @@ class Year(object):
     def get_taken(self, week_number):
         return (self.weeks[week_number].get_taken() if week_number in self.weeks
                 else None)
+
+    def set_next_year(self, next_year):
+        self.next_year = next_year
+
+    def get_next_year(self):
+        return self.next_year
 
     def _setup_week(self, week_number):
         self.weeks[week_number] = WeekRecord()

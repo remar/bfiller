@@ -92,7 +92,27 @@ class YearTest(unittest.TestCase):
         self.assertEquals(m.get_day(1), TimeRange(Time(17), Time(20)))
         self.assertEquals(m.get_day(2), TimeRange(Time(13, 30), Time(20)))
 
-#TODO test January and December
+    def test_can_be_linked_to_next_year(self):
+        y2012 = Year(2012)
+        y2013 = Year(2013)
+        y2012.set_next_year(y2013)
+        self.assertEquals(y2012.get_next_year(), y2013)
+
+#TODO can link to previous year, and it automatically updates links
+#between years
+
+    def test_can_generate_monthly_report_for_december(self):
+        y2012 = Year(2012)
+        y2013 = Year(2013)
+        y2012.set_next_year(y2013)
+        blocked = self._get_daycare_week()
+        taken = self._get_assistance_week()
+        y2013.add_blocked(1, blocked)
+        y2013.add_taken(1, taken)
+        m = y2012.generate_montly_report(12, Hours(48, 0))
+        self.assertEquals(m.get_day(31), TimeRange(Time(17), Time(20)))
+
+#TODO test January
 
     def _get_daycare_week(self):
         w = Week()
