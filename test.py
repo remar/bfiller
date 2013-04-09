@@ -255,13 +255,12 @@ taken[2013][10].set_day(2, TimeRange(Time(7), Time(17)))
 blocked[2013][11] = Week()
 blocked[2013][11].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
 blocked[2013][11].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
-blocked[2013][11].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
 
 taken[2013][11] = Week()
-taken[2013][11].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[2013][11].set_day(0, TimeRange(Time(13, 30), Time(15)))
 taken[2013][11].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
 taken[2013][11].set_day(2, TimeRange(Time(7), Time(17)))
-taken[2013][11].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+taken[2013][11].set_day(3, TimeRange(Time(6, 30), Time(12, 30)))
 
 blocked[2013][12] = Week()
 blocked[2013][12].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
@@ -269,7 +268,7 @@ blocked[2013][12].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
 blocked[2013][12].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
 
 taken[2013][12] = Week()
-taken[2013][12].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[2013][12].set_day(0, TimeRange(Time(13, 30), Time(15)))
 taken[2013][12].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
 taken[2013][12].set_day(2, TimeRange(Time(7), Time(17)))
 taken[2013][12].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
@@ -280,9 +279,11 @@ blocked[2013][13].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
 blocked[2013][13].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
 
 taken[2013][13] = Week()
-taken[2013][13].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[2013][13].set_day(0, TimeRange(Time(13, 30), Time(15)))
 taken[2013][13].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
 taken[2013][13].set_day(2, TimeRange(Time(7), Time(17))) # Linda
+
+# Josefin 54, Linda 10, Susanne 143.17, Summa 207.17
 
 for y in (2012, 2013):
      for i in blocked[y].keys():
