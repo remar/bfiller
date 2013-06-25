@@ -30,7 +30,8 @@ def generate_week(hours, taken_week = None, latest_time = None):
         generated_day = generate_day(longest_day if hours > longest_day else hours,
                                      taken_hours,
                                      latest_time)
-        week.set_day(day, generated_day)
+        if generated_day.get_length().get_total_minutes() > 0:
+            week.set_day(day, generated_day)
         day += 1
         hours -= generated_day.get_length()
 

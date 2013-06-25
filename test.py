@@ -340,6 +340,51 @@ taken[2013][18].set_day(3, TimeRange(Time(6, 30), Time(8, 30))) # Maria
 
 # Josefin 46, Linda 5, Maria 6, Susanne 150.33, Summa 207.33
 
+# May
+
+blocked[2013][19] = Week()
+blocked[2013][19].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][19].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[2013][19] = Week()
+taken[2013][19].set_day(0, TimeRange(Time(13, 30), Time(15)))
+taken[2013][19].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[2013][19].set_day(2, TimeRange(Time(7), Time(17)))
+
+blocked[2013][20] = Week()
+blocked[2013][20].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][20].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][20].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[2013][20] = Week()
+taken[2013][20].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[2013][20].set_day(2, TimeRange(Time(7), Time(17)))
+taken[2013][20].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+blocked[2013][21] = Week()
+blocked[2013][21].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][21].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][21].set_day(3, TimeRange(Time(8, 30), Time(13, 30)))
+
+taken[2013][21] = Week()
+taken[2013][21].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[2013][21].set_day(1, TimeRange(Time(6, 30), Time(8, 30)))
+taken[2013][21].set_day(2, TimeRange(Time(7), Time(17)))
+taken[2013][21].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+blocked[2013][22] = Week()
+blocked[2013][22].set_day(0, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][22].set_day(1, TimeRange(Time(8, 30), Time(13, 30)))
+blocked[2013][22].set_day(3, TimeRange(Time(8, 30), Time(20, 0)))
+blocked[2013][22].set_day(4, TimeRange(Time(0), Time(9)))
+
+taken[2013][22] = Week()
+taken[2013][22].set_day(0, TimeRange(Time(13, 30), Time(17)))
+taken[2013][22].set_day(2, TimeRange(Time(7), Time(17)))
+taken[2013][22].set_day(3, TimeRange(Time(6, 30), Time(8, 30)))
+
+# Josefin 61.5, Susanne 154.33, Summa 215.83
+
 for y in (2012, 2013):
      for i in blocked[y].keys():
           year[y].add_blocked(i, blocked[y][i])
@@ -348,4 +393,4 @@ for y in (2012, 2013):
 
 report_gen = ReportGenerator()
 
-report_gen.generate(year[2013].generate_montly_report(4, h1))
+report_gen.generate(year[2013].generate_montly_report(5, h1))
